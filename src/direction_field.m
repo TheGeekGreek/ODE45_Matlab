@@ -29,6 +29,8 @@ function [] = direction_field( func, timespan, y0, x )
     hold on;
     [t, y] = ODE45(func, timespan, y0);   
     plot(t, y, 'color', 'r', 'Marker', 'o');
+    xlabel('$t$','Interpreter','LaTex', 'FontSize', 20);
+    ylabel('$y(t)$','Interpreter','LaTex', 'FontSize', 20);
     xlim([min(x), max(x)]);
     ylim([min(x), max(x)]);
     ax = gca;
