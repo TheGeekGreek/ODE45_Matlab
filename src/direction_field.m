@@ -33,8 +33,4 @@ function [] = direction_field( func, timespan, y0, x )
     ylabel('$y(t)$','Interpreter','LaTex', 'FontSize', 20);
     xlim([min(x), max(x)]);
     ylim([min(x), max(x)]);
-    ax = gca;
-    ax.XAxisLocation = 'bottom';
-    ax.YAxisLocation = 'left';
-    ax.Box = 'off';
 end
