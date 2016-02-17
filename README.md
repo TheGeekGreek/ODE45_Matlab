@@ -2,6 +2,13 @@
 
 Run `sample_direction_field_script.m` for a sample implementation. See `f.m` for some sample functions.
 
+## Sample Output
+
+For `f(t,x) = -0.5y`
+
+![alt text](https://github.com/TheGeekGreek/ODE45_Matlab/blob/master/sample_direction_field_script_plot.png "vector field")
+
+
 ## Doc
 
 To get detailed usage information: 
