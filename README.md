@@ -1,4 +1,4 @@
-# ODE45_Matlab
+# Project: Differential Equations
 
 Run `sample_direction_field_script.m` for a sample implementation. See `f.m` for some sample functions.
 
