@@ -12,7 +12,7 @@ To get detailed usage information:
 direction_field:  
         Draws a normed direction field using an ODE 
  
-  parameters: ( function , y0, timespan, x)
+  parameters: ( function, timespan, y0, x)
     function -> f(t,y)
     timespan -> [start_time, end_time]
     y0       -> starting value
@@ -29,7 +29,7 @@ direction_field:
   explicit_euler:
         Solves a differential using the Explicit Euler
  
-  parameters: ( function , y0, timespan, bound)
+  parameters: ( function, timespan, y0, bound)
     function -> f(t,y)
     timespan -> [start_time, end_time]
     y0       -> starting value
