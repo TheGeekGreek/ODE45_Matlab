@@ -1,4 +1,4 @@
-% ODE_45:
+% ODE45:
 %       Solves a differential using the Embbedded Runge-Kuta Method
 %
 % parameters: ( odefun, timespan, bound)
