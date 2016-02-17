@@ -1,6 +1,6 @@
+% Sample Functions
+
 function [ out ] = f( t, y )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
     out = -.5 * y;
     %out = y.^2 - t;
     %out = zeros(length(y),1);
