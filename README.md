@@ -42,7 +42,7 @@ direction_field:
   ODE_45:
         Solves a differential using the Embbedded Runge-Kuta Method
  
-  parameters: ( function, timespan, bound)
+  parameters: ( function, timespan, y0)
     function -> f(t,y)
     timespan -> [start_time, end_time]
     y0       -> starting value
