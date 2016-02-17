@@ -1,5 +1,15 @@
+% ODE_45:
+%       Solves a differential using the Embbedded Runge-Kuta Method
+%
+% parameters: ( function, timespan, bound)
+%   function -> f(t,y)
+%   timespan -> [start_time, end_time]
+%   y0       -> starting value
+
+
 function [time, y] = ODE45( odefun, timespan, y0)
-%Default settings
+
+% Default settings
 abstol = repmat([1e-6], length(y0), 1);
 reltol = repmat([1e-6], length(y0), 1);
 h_min = eps;
@@ -23,17 +33,17 @@ rk_weights_tilde = [
             2./55
 ];
 
-%Reshape initial value to columnvector
+% Reshape initial value to columnvector
 y0 = reshape(y0, [length(y0), 1]);
 
 t = timespan(1);
 
-%Storage
+% Storage
 y = [y0];
 time_increments = [];
 time = [t];
 
-%Constants
+% Constants
 initial_facmax = 2;
 successfull_facmax = 5;
 unsuccessfull_facmax = 1;
@@ -42,20 +52,20 @@ power = 5;
 fac = (.25)^(1./power);
 n = length(y0);
 
-%Statistics
+% Statistics
 successfull_steps = 0;
 rejected_steps = 0;
 
-%Time measurement initialisation
+% Time measurement initialisation
 tic;
 
-%Calculation of initial stepsize
+% Calculation of initial stepsize
 evaluation1 = odefun(t, y0);
          
 scaling = zeros(n, 1);
             
 for i = 1:n
-    scaling(i) = scaling(i) + abs(y0(i)) * reltol(i);
+    scaling(i) = abstol(i) + abs(y0(i)) * reltol(i);
 end
     
 d0 = sqrt(1./n * sum((y0./scaling).^2));
@@ -79,7 +89,7 @@ end
 
 h =  min(1e+2 * h0, h1);
 
-%Main loop
+% Solving
 while t < timespan(2)
     if t + h >= timespan(2)
         h = timespan(2) - t;
@@ -99,7 +109,7 @@ while t < timespan(2)
                         
     for i = 1:n
         factor = max(abs(y0(i)) , abs(y1(i)));
-        scaling(i) = scaling(i) + (factor * reltol(i));
+        scaling(i) = abstol(i) + (factor * reltol(i));
     end
     
     error = sqrt( 1/n * sum(((y1 - y_hat1)./scaling).^2) );
@@ -113,7 +123,7 @@ while t < timespan(2)
     h_new = h * r;                   
                         
     if error <= 1
-        %Local extrapolation
+        % Local extrapolation
         y0 = y_hat1;
                 
         t = t+h;
@@ -134,7 +144,7 @@ while t < timespan(2)
     
 end
 
-%Terminating and statistics
+% Terminating and statistics
 disp('ODE45 statistics:')
 
 toc;
@@ -144,7 +154,7 @@ disp(sprintf('The number of rejected steps is %d', rejected_steps));
 
 end
 
-
+% Increment Computation
 function [increments] = compute_increments(func, y, t, h)
     rk_matrix = [
         [0., 0., 0., 0., 0., 0.];
@@ -155,7 +165,7 @@ function [increments] = compute_increments(func, y, t, h)
         [-8./27, 2., -3544./2565, 1859./4104, -11./40, 0.]
     ];
     
-    %Matrix shape
+    % Matrix shape
     [m,n] = size(rk_matrix);
 
     rk_nodes = sum(rk_matrix, 2);
