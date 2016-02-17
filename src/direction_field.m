@@ -20,8 +20,8 @@ function [] = direction_field( func, timespan, y0, x )
     
     % norm the vectors
     normed = 1./sqrt(V.^2 + U.^2);
-    U = normed .* U
-    V = normed .* V
+    U = normed .* U;
+    V = normed .* V;
     
     % graph it
     quiver(X, Y, U, V, 'color', [0, 0, 0], ...
