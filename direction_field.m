@@ -29,8 +29,8 @@ function [] = direction_field( func, timespan, y0, x )
     hold on;
     [t, y] = ODE45(func, timespan, y0);   
     plot(t, y, 'color', 'r', 'Marker', 'o');
-    xlim([-bound, bound]);
-    ylim([-bound, bound]);
+    xlim([min(x), max(x)]);
+    ylim([min(x), max(x)]);
     ax = gca;
     ax.XAxisLocation = 'bottom';
     ax.YAxisLocation = 'left';
